@@ -9,12 +9,16 @@ import java.util.stream.Collectors;
 
 @Service
 public class DataProcessingService {
+
     private final Map<String, DataExtractorService> extractors;
+    private final CacheService cacheService;
 
     @Autowired
-    public DataProcessingService(List<DataExtractorService> extractorList) {
+    public DataProcessingService(List<DataExtractorService> extractorList,
+                                 CacheService cacheService) {
         this.extractors = extractorList.stream()
                 .collect(Collectors.toMap(DataExtractorService::getType, e -> e));
+        this.cacheService = cacheService;
     }
 
     public String process(String type, String data, String path) {
@@ -22,6 +26,17 @@ public class DataProcessingService {
         if (extractor == null) {
             throw new IllegalArgumentException("Неподдерживаемый тип: '" + type + "'");
         }
-        return extractor.extract(data, path);
+
+
+        String key = cacheService.buildKey(type.toLowerCase(), data, path);
+        String cached = cacheService.get(key);
+        if (cached != null) {
+            return cached;
+        }
+
+        // Вычисляем результат и кладём в кеш
+        String result = extractor.extract(data, path);
+        cacheService.put(key, result);
+        return result;
     }
 }
