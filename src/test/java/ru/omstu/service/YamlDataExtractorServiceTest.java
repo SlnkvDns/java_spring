@@ -17,13 +17,13 @@ class YamlDataExtractorServiceTest {
     }
 
     @Test
-    @DisplayName("getType() возвращает 'yaml'")
+    @DisplayName("getType() возвращает yaml")
     void getType_returnsYaml() {
         assertEquals("yaml", service.getType());
     }
 
     @Test
-    @DisplayName("Извлечение простого строкового значения из YAML")
+    @DisplayName("Извлечение простого строкового значения из yaml")
     void extract_simpleStringValue() {
         String yaml = "user:\n  name: Alex";
         assertEquals("Alex", service.extract(yaml, "user/name"));

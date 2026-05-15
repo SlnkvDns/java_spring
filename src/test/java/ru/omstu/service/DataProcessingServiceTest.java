@@ -25,7 +25,7 @@ class DataProcessingServiceTest {
 
 
     @Test
-    @DisplayName("Для типа 'json' используется JsonDataExtractorService")
+    @DisplayName("Для типа json используется JsonDataExtractorService")
     void process_jsonType_returnsCorrectValue() {
         String result = dataProcessingService.process(
                 "json",
@@ -36,7 +36,7 @@ class DataProcessingServiceTest {
     }
 
     @Test
-    @DisplayName("Для типа 'xml' используется XmlDataExtractorService")
+    @DisplayName("Для типа xml используется XmlDataExtractorService")
     void process_xmlType_returnsCorrectValue() {
         String xml = "<root><user><name>Alex</name></user></root>";
         String result = dataProcessingService.process("xml", xml, "user/name");
@@ -44,7 +44,7 @@ class DataProcessingServiceTest {
     }
 
     @Test
-    @DisplayName("Для типа 'yaml' используется YamlDataExtractorService")
+    @DisplayName("Для типа yaml используется YamlDataExtractorService")
     void process_yamlType_returnsCorrectValue() {
         String yaml = "relation:\n  - id: 2\n    name: Петр Иванов";
         String result = dataProcessingService.process("yaml", yaml, "relation/0/name");

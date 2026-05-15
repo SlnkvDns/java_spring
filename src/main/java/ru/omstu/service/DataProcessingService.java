@@ -34,7 +34,6 @@ public class DataProcessingService {
             return cached;
         }
 
-        // Вычисляем результат и кладём в кеш
         String result = extractor.extract(data, path);
         cacheService.put(key, result);
         return result;

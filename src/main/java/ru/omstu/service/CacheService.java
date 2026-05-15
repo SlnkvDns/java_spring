@@ -4,22 +4,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 
 @Service
 public class CacheService {
 
     private static final Logger log = LoggerFactory.getLogger(CacheService.class);
 
-    private final Map<String, String> cache = new ConcurrentHashMap<>();
-
+    private final Map<String, String> cache = new HashMap<>();
 
     public String buildKey(String type, String data, String path) {
         return type + ":" + path + ":" + data;
     }
-
 
     public String get(String key) {
         String value = cache.get(key);
@@ -30,7 +27,6 @@ public class CacheService {
         }
         return value;
     }
-
 
     public void put(String key, String value) {
         cache.put(key, value);

@@ -33,7 +33,7 @@ class JsonDataExtractorServiceTest {
     @Test
     @DisplayName("Извлечение вложенного значения")
     void extract_nestedValue() {
-        String json = "{\"a\": {\"b\": {\"c\": \"deep\"}}}";
-        assertEquals("deep", service.extract(json, "a/b/c"));
+        String json = "{\"a\": {\"b\": {\"c\": \"d\"}}}";
+        assertEquals("d", service.extract(json, "a/b/c"));
     }
 }

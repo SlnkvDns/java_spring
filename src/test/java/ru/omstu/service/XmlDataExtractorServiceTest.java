@@ -17,7 +17,7 @@ class XmlDataExtractorServiceTest {
     }
 
     @Test
-    @DisplayName("getType() возвращает 'xml'")
+    @DisplayName("getType() возвращает xml")
     void getType_returnsXml() {
         assertEquals("xml", service.getType());
     }
@@ -32,7 +32,7 @@ class XmlDataExtractorServiceTest {
     @Test
     @DisplayName("Извлечение вложенного значения из XML")
     void extract_nestedValue() {
-        String xml = "<root><a><b>deep</b></a></root>";
-        assertEquals("deep", service.extract(xml, "a/b"));
+        String xml = "<root><a><b>c</b></a></root>";
+        assertEquals("c", service.extract(xml, "a/b"));
     }
 }
