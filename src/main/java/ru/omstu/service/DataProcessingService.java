@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 public class DataProcessingService {
 
     private final Map<String, DataExtractorService> extractors;
-    private final CacheService cacheService;
+    private final CacheStorageService cacheService;
 
     @Autowired
     public DataProcessingService(List<DataExtractorService> extractorList,
-                                 CacheService cacheService) {
+                                 CacheStorageService cacheService) {
         this.extractors = extractorList.stream()
                 .collect(Collectors.toMap(DataExtractorService::getType, e -> e));
         this.cacheService = cacheService;

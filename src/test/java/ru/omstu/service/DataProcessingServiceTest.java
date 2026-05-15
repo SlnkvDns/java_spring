@@ -16,7 +16,7 @@ class DataProcessingServiceTest {
     private DataProcessingService dataProcessingService;
 
     @Autowired
-    private CacheService cacheService;
+    private CacheStorageService cacheService;
 
     @BeforeEach
     void clearCache() {
